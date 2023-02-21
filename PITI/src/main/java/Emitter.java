@@ -16,7 +16,7 @@ public class Emitter {
             System.out.println("Welcome! Please introduce a message.");
 
             // Initialize the serial port
-            final var serialPort = new SerialPort(Emitter.PORT);
+            final var serialPort = new SerialPort(PORT);
             serialPort.openPort();
             serialPort.setParams(BAUDRATE_9600, DATABITS_8, STOPBITS_1, PARITY_NONE);
 
@@ -25,7 +25,7 @@ public class Emitter {
                 System.out.println("Message: ");
                 auxiliary = userInput.readLine(); // Read the user's input
 
-                // Encode the message and sent it through the serial port
+                // Encode the message and send it through the serial port
                 serialPort.writeBytes(auxiliary.getBytes());
 
                 String messageToPrint = String
