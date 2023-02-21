@@ -23,9 +23,14 @@ public class Emitter {
             String auxiliary = ""; // Auxiliary string
             while (!auxiliary.equals("exit")) {
                 System.out.println("Message: ");
-                auxiliary = userInput.readLine();
+                auxiliary = userInput.readLine(); // Read the user's input
 
-                serialPort.writeBytes(auxiliary.getBytes()); // Send the message
+                // Encode the message and sent it through the serial port
+                serialPort.writeBytes(auxiliary.getBytes());
+
+                String messageToPrint = String
+                        .format("Sent: %s ( %d bytes)", auxiliary, auxiliary.length());
+                System.out.println(messageToPrint);
             }
             serialPort.closePort(); // Connection closed
         } catch (IOException | SerialPortException e) {
