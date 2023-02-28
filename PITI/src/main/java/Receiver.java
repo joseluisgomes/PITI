@@ -15,32 +15,10 @@ public class Receiver {
             SerialPort port = new SerialPort(PORT);
             port.openPort();
             port.setParams(BAUDRATE_9600,  DATABITS_8, STOPBITS_1, PARITY_NONE);
-            // port.setParams(9600, 8, 1, 0); // alternate technique
+
             int mask = SerialPort.MASK_RXCHAR + SerialPort.MASK_CTS + SerialPort.MASK_DSR;
             port.setEventsMask(mask);
-            port.addEventListener(new MyPortListener(port) /* defined below */);
-
-
-            // Initialize the serial port
-       /*     final var serialPort = new SerialPort(PORT);
-            serialPort.openPort();
-            serialPort.setParams(BAUDRATE_9600,  DATABITS_8, STOPBITS_1, PARITY_NONE);
-            final int mask = MASK_RXCHAR + MASK_CTS + MASK_DSR;
-            serialPort.setEventsMask(mask);
-
-            String auxiliary = ""; // Auxiliary string
-            while (!auxiliary.equals("exit")) {
-                var portListener = new MyPortListener(serialPort);
-                serialPort.addEventListener(portListener);
-
-                auxiliary = portListener.getMessageReceived();
-
-                String messageToPrint = String
-                        .format("Received: %s ( %d bytes)", auxiliary, auxiliary.length());
-                System.out.println(messageToPrint);
-            }
-            serialPort.closePort(); // Connection closed
-            */
+            port.addEventListener(new MyPortListener(port));
         } catch (SerialPortException e) {
             throw new RuntimeException(e);
         }
@@ -48,7 +26,7 @@ public class Receiver {
 }
 
 class MyPortListener implements SerialPortEventListener {
-    SerialPort port;
+    private final SerialPort port;
 
     public MyPortListener(SerialPort port) {
         this.port = port;
@@ -57,15 +35,16 @@ class MyPortListener implements SerialPortEventListener {
     @Override
     public void serialEvent(SerialPortEvent serialPortEvent) {
         if(serialPortEvent.isRXCHAR()){ // data is available
-            // read data, if 10 bytes available
+            // read data, if there are bytes available
             if(serialPortEvent.getEventValue() > 0){
-                try {
+                try { // Decode the received message
                     byte[] buffer = port.readBytes(serialPortEvent.getEventValue());
                     String messageReceived = new String(buffer);
 
+                    // TODO: Edit the output message
                     System.out.println("Received: " + messageReceived);
                 } catch (SerialPortException ex) {
-                    System.out.println(ex);
+                    throw new RuntimeException(ex);
                 }
             }
         } else if(serialPortEvent.isCTS()){ // CTS line has changed state
