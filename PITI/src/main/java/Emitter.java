@@ -15,7 +15,7 @@ public class Emitter {
                      new BufferedReader(new InputStreamReader(System.in))) {
             System.out.println("Welcome! Please introduce a message.");
 
-            // Initialize the serial port
+            // Initialize the SERIAL PORT
             final var serialPort = new SerialPort(PORT);
             serialPort.openPort();
             serialPort.setParams(BAUDRATE_9600, DATABITS_8, STOPBITS_1, PARITY_NONE);

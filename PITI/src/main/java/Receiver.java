@@ -12,7 +12,8 @@ public class Receiver {
         try {
             System.out.println("Welcome to the chat!");
 
-            SerialPort port = new SerialPort(PORT);
+            // Initialize the SERIAL PORT
+            final var port = new SerialPort(PORT);
             port.openPort();
             port.setParams(BAUDRATE_9600,  DATABITS_8, STOPBITS_1, PARITY_NONE);
 
@@ -37,12 +38,13 @@ class MyPortListener implements SerialPortEventListener {
         if(serialPortEvent.isRXCHAR()){ // data is available
             // read data, if there are bytes available
             if(serialPortEvent.getEventValue() > 0){
-                try { // Decode the received message
-                    byte[] buffer = port.readBytes(serialPortEvent.getEventValue());
+                try {
+                    byte[] buffer = port.readBytes(serialPortEvent.getEventValue()); // Decode the received message
                     String messageReceived = new String(buffer);
 
-                    // TODO: Edit the output message
-                    System.out.println("Received: " + messageReceived);
+                    var messageToPrint = String
+                            .format("Received: %s ( %d bytes)", messageReceived, messageReceived.length());
+                    System.out.println(messageToPrint);
                 } catch (SerialPortException ex) {
                     throw new RuntimeException(ex);
                 }
