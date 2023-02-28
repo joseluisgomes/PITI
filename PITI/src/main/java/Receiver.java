@@ -17,6 +17,10 @@ public class Receiver {
             port.openPort();
             port.setParams(BAUDRATE_9600,  DATABITS_8, STOPBITS_1, PARITY_NONE);
 
+            /*
+              The mask is an additive quantity, thus to set a mask on the expectation of the arrival of Event Data (MASK_RXCHAR)
+              and change the status lines CTS (MASK_CTS), DSR (MASK_DSR) we just need to combine all three masks.
+             */
             int mask = SerialPort.MASK_RXCHAR + SerialPort.MASK_CTS + SerialPort.MASK_DSR;
             port.setEventsMask(mask);
             port.addEventListener(new MyPortListener(port));
@@ -26,6 +30,12 @@ public class Receiver {
     }
 }
 
+/**
+ * This class must implement the method serialEvent, through it, we learn about
+ * events that happened to our port. But we will not report on all events but only
+ * those that we put in the mask. In this case the arrival of the data and change the
+ * status lines CTS and DSR
+ */
 class MyPortListener implements SerialPortEventListener {
     private final SerialPort port;
 
@@ -35,11 +45,12 @@ class MyPortListener implements SerialPortEventListener {
 
     @Override
     public void serialEvent(SerialPortEvent serialPortEvent) {
+        int eventValue = serialPortEvent.getEventValue();
+
         if(serialPortEvent.isRXCHAR()){ // data is available
-            // read data, if there are bytes available
-            if(serialPortEvent.getEventValue() > 0){
+            if(eventValue > 0){ // read data, if there are bytes available
                 try {
-                    byte[] buffer = port.readBytes(serialPortEvent.getEventValue()); // Decode the received message
+                    byte[] buffer = port.readBytes(eventValue); // Decode the received message
                     String messageReceived = new String(buffer);
 
                     var messageToPrint = String
@@ -50,13 +61,13 @@ class MyPortListener implements SerialPortEventListener {
                 }
             }
         } else if(serialPortEvent.isCTS()){ // CTS line has changed state
-            if(serialPortEvent.getEventValue() == 1){ // line is ON
+            if(eventValue == 1){ // line is ON
                 System.out.println("CTS - ON");
             } else {
                 System.out.println("CTS - OFF");
             }
         } else if(serialPortEvent.isDSR()){ // DSR line has changed state
-            if(serialPortEvent.getEventValue() == 1){ // line is ON
+            if(eventValue == 1){ // line is ON
                 System.out.println("DSR - ON");
             } else {
                 System.out.println("DSR - OFF");

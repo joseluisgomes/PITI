@@ -32,6 +32,7 @@ public class Emitter {
                         .format("Sent: %s ( %d bytes)", auxiliary, auxiliary.length());
                 System.out.println(messageToPrint);
             }
+            serialPort.writeBytes(auxiliary.getBytes()); // Encode the flag "exit" and send it through the serial port
             serialPort.closePort(); // Connection closed
         } catch (IOException | SerialPortException e) {
             throw new RuntimeException(e);
