@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 import static jssc.SerialPort.*;
 
 public class Emitter {
-    public static final String PORT = "COM1";
+    public static final String PORT = "COM4";
 
     public static void main(String[] args) {
         try (final var userInput = // The user's input comes from the keyboard
