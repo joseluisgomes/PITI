@@ -1,8 +1,9 @@
 // sender code for ESP32 board
 const int outputPin = 13; // set the digital output pin for transmitting the character
 // char characterToSend = 'H'; // set the character to send
-String stringToSend = "Hello World!";
+String stringToSend = "Hello";
 const byte syncPattern = 0b10101010; // set the 8-bit synchronization pattern
+int parityBit = 0;
 
 void setup() {
   Serial.begin(9600); // initialize serial communication for debugging
@@ -23,7 +24,10 @@ void loop() {
 
     delay(10); // wait for 10 ms before transmitting the first bit
     char characterToSend = stringToSend.charAt(j); // get the j-th character of the string
-    for (int i = 0; i < 8; i++) { // iterate over all 8 bits of the character
+    parityBit = parity(characterToSend);
+    byte charWithParity = (characterToSend << 1) | parityBit; // Add the parity bit to the end of the char
+
+    for (int i = 0; i < 9; i++) { // iterate over all 8 bits of the character
       if (bitRead(characterToSend, i) == 1) { // check if the i-th bit of the character is 1
         digitalWrite(outputPin, HIGH); // set the output pin to HIGH to transmit a 1
       } else {
@@ -34,5 +38,16 @@ void loop() {
     delay(10); // wait for 1 second before sending the next character
   }
   digitalWrite(outputPin, HIGH); // set the output pin to HIGH to signal the end of the character transmission
-  delay(1000); // wait for 1 second before sending the next character
+  delay(10); // wait for 1 second before sending the next character
+}
+
+
+int parity(char charSend) {
+
+  int parity = 0;
+  for (int i = 0; i < 8; i++) {
+    parity ^= bitRead(charSend, i);
+  }
+
+  return parity;
 }
