@@ -9,8 +9,5 @@
         <module name="PITI" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="PITI" target="19" />
-    </bytecodeTargetLevel>
   </component>
 </project>
