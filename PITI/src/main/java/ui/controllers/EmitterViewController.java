@@ -58,8 +58,6 @@ public class EmitterViewController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        //EmitterTextArea.setText("");
-        //System.out.println("Message: " + textToBeSent);
         event.consume();
     }
 

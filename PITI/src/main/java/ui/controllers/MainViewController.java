@@ -110,8 +110,6 @@ public class MainViewController implements Initializable {
             setPortOnApp(tempPort);
             setBaudrateOnApp(tempBaudrate);
 
-            // Thread thread = new Thread(new Emitter());
-
             Stage newStage = App.getStage();
             newStage.setScene(newScene);
         }
