@@ -34,6 +34,8 @@ public class EmitterViewController implements Initializable {
                 handleSubmitButtonAction(new ActionEvent());
             }
         });
+
+        System.out.println("BR: " + App.baudrate);
     }
 
     @FXML
@@ -49,6 +51,7 @@ public class EmitterViewController implements Initializable {
 
         try {
             final var serialPort = new SerialPort(App.port);
+
             serialPort.openPort();
             serialPort.setParams(Integer.parseInt(App.baudrate), DATABITS_8, STOPBITS_1, PARITY_NONE);
 
@@ -58,6 +61,7 @@ public class EmitterViewController implements Initializable {
             throw new RuntimeException(e);
         }
 
+        EmitterTextArea.setText("");
         event.consume();
     }
 

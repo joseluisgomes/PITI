@@ -104,11 +104,11 @@ public class MainViewController implements Initializable {
         } else if (tempBaudrate == null) {
             alertNullBaudrate();
         } else {
-            System.out.println("\nE: COM port = " + tempPort);
-            System.out.println("E: Baudrate = " + tempBaudrate);
-
             setPortOnApp(tempPort);
             setBaudrateOnApp(tempBaudrate);
+
+            System.out.println("\nE: COM port = " + App.port);
+            System.out.println("E: Baudrate = " + App.baudrate);
 
             Stage newStage = App.getStage();
             newStage.setScene(newScene);
@@ -130,11 +130,11 @@ public class MainViewController implements Initializable {
         } else if (tempBaudrate == null) {
             alertNullBaudrate();
         } else {
-            System.out.println("\nR: COM port = " + tempPort);
-            System.out.println("R: Baudrate = " + tempBaudrate);
-
             setPortOnApp(tempPort);
             setBaudrateOnApp(tempBaudrate);
+
+            System.out.println("\nR: COM port = " + App.port);
+            System.out.println("R: Baudrate = " + App.baudrate);
 
             Stage newStage = App.getStage();
             newStage.setScene(newScene);

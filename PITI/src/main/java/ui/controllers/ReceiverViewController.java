@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -27,7 +28,13 @@ import static jssc.SerialPort.*;
 public class ReceiverViewController implements Initializable {
 
     @FXML
-    private static TextArea ReceiverTextArea;
+    private TextArea ReceiverTextArea;
+
+    @FXML
+    private Label receiverTextBR;
+
+    @FXML
+    private Label receiverTextPort;
 
     static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
@@ -35,26 +42,30 @@ public class ReceiverViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ReceiverTextArea.setEditable(false);
 
+
+
+        System.out.println("BR: " + App.baudrate);
+
         try {
             // Initialize the SERIAL PORT
-            final var port = new SerialPort(App.port);
-            port.openPort();
-            port.setParams(Integer.parseInt(App.baudrate), DATABITS_8, STOPBITS_1, PARITY_NONE);
-
-            /*
-              The mask is an additive quantity, thus to set a mask on the expectation of the arrival of Event Data (MASK_RXCHAR)
-              and change the status lines CTS (MASK_CTS), DSR (MASK_DSR) we just need to combine all three masks.
-             */
+            final var serialPort = new SerialPort(App.port);
+            serialPort.openPort();
+            serialPort.setParams(Integer.parseInt(App.baudrate), DATABITS_8, STOPBITS_1, PARITY_NONE);
 
             int mask = SerialPort.MASK_RXCHAR + SerialPort.MASK_CTS + SerialPort.MASK_DSR;
-            port.setEventsMask(mask);
-            port.addEventListener(new MyPortListener(port));
+            serialPort.setEventsMask(mask);
+            serialPort.addEventListener(new MyPortListener(serialPort));
+            serialPort.closePort();
+
+            receiverTextBR.setText(MainViewController.getBaudrateFromApp());
+            receiverTextPort.setText(MainViewController.getPortFromApp());
         } catch (SerialPortException e) {
             throw new RuntimeException(e);
         }
 
         addText("FIRST MESSAGE");
-        addText("SECOND MESSAGE");
+        //addText("SECOND MESSAGE");
+
     }
 
     @FXML
@@ -69,7 +80,7 @@ public class ReceiverViewController implements Initializable {
         event.consume();
     }
 
-    public static void addText(String msg) {
+    public void addText(String msg) {
         LocalDateTime ldt = LocalDateTime.now();
         String time = ldt.format(format);
 
@@ -80,7 +91,7 @@ public class ReceiverViewController implements Initializable {
         }
     }
 
-    static class MyPortListener implements SerialPortEventListener {
+    class MyPortListener implements SerialPortEventListener {
         private final SerialPort port;
 
         public MyPortListener(SerialPort port) {

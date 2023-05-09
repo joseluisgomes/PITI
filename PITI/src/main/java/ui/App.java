@@ -17,8 +17,8 @@ public class App extends Application {
     private double xOffset;
     private double yOffset;
 
-    public static String port;
-    public static String baudrate;
+    public static String port = "COM4";
+    public static String baudrate = "9600";
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -53,5 +53,4 @@ public class App extends Application {
     public static void main(String[] args) { launch(args); }
 
     public static Stage getStage() { return stage; }
-
 }

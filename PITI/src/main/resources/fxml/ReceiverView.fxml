@@ -34,7 +34,18 @@
                                 </padding>
                                 <Line layoutX="50" layoutY="50" endX="150" stroke="#333333" strokeWidth="2.5"/>
                             </HBox>
-                            <!-- (NEXT) third horizontal box for the next buttons -->
+                            <HBox>
+                                <padding>
+                                    <Insets top="10" left="10"/>
+                                </padding>
+                                <Label fx:id="receiverTextPort"/>
+                            </HBox>
+                            <HBox>
+                                <padding>
+                                    <Insets top="10" left="10"/>
+                                </padding>
+                                <Label fx:id="receiverTextBR"/>
+                            </HBox>
                         </VBox>
 
                         <!-- Right side box -->
@@ -46,6 +57,7 @@
                             <HBox alignment="CENTER_RIGHT" spacing="10" HBox.hgrow="ALWAYS">
                                 <Button onAction="#handleReturnButtonClicked" styleClass="return-button"/>
                             </HBox>
+
                             <!-- HBox for reading the messages -->
                             <HBox HBox.hgrow="ALWAYS">
                                 <padding>
