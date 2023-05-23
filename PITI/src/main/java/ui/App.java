@@ -17,7 +17,7 @@ public class App extends Application {
     private double xOffset;
     private double yOffset;
 
-    public static String port = "COM4";
+    public static String port = "COM5";
     public static String baudrate = "9600";
 
     @Override

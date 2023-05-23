@@ -48,7 +48,7 @@
                             <!-- HBox for writing the messages -->
                             <HBox HBox.hgrow="ALWAYS">
                                 <padding>
-                                    <Insets top="10" bottom="10"/>
+                                    <Insets top="10" bottom="10" right="10"/>
                                 </padding>
                                 <TextArea fx:id="EmitterTextArea" minHeight="250" HBox.hgrow="ALWAYS" promptText="Sentence to send: "/>
                             </HBox>

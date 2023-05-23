@@ -35,7 +35,7 @@ public class EmitterViewController implements Initializable {
             }
         });
 
-        System.out.println("BR: " + App.baudrate);
+        //System.out.println("BR: " + App.baudrate);
     }
 
     @FXML
