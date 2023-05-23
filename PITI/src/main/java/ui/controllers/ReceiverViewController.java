@@ -43,7 +43,7 @@ public class ReceiverViewController implements Initializable {
         ReceiverTextArea.setEditable(false);
 
         //System.out.println("BR: " + App.baudrate);
-/*
+
         try {
             // Initialize the SERIAL PORT
             final var serialPort = new SerialPort(App.port);
@@ -62,8 +62,8 @@ public class ReceiverViewController implements Initializable {
         }
 
         addText("FIRST MESSAGE");
-        addText("SECOND MESSAGE");
-*/
+        //addText("SECOND MESSAGE");
+
     }
 
     @FXML
@@ -107,6 +107,7 @@ public class ReceiverViewController implements Initializable {
                         String messageReceived = new String(buffer);
 
                         addText(messageReceived);
+                        System.out.println(messageReceived);
                     } catch (SerialPortException ex) {
                         throw new RuntimeException(ex);
                     }
