@@ -3,6 +3,7 @@ package ui.controllers;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 import ui.App;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +14,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -55,6 +55,7 @@ public class EmitterViewController implements Initializable {
             serialPort.openPort();
             serialPort.setParams(Integer.parseInt(App.baudrate), DATABITS_8, STOPBITS_1, PARITY_NONE);
 
+            textToBeSent += "\n";
             serialPort.writeBytes(textToBeSent.getBytes());
             serialPort.closePort(); // Connection closed
         } catch (SerialPortException e) {
