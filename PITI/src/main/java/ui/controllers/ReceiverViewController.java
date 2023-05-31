@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -35,6 +37,8 @@ public class ReceiverViewController implements Initializable {
 
     @FXML
     private Label receiverTextPort;
+
+    private String messagesReceived = "";
 
     static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
@@ -53,7 +57,7 @@ public class ReceiverViewController implements Initializable {
             int mask = SerialPort.MASK_RXCHAR + SerialPort.MASK_CTS + SerialPort.MASK_DSR;
             serialPort.setEventsMask(mask);
             serialPort.addEventListener(new MyPortListener(serialPort));
-            serialPort.closePort();
+        //    serialPort.closePort();
 
             receiverTextBR.setText(MainViewController.getBaudrateFromApp());
             receiverTextPort.setText(MainViewController.getPortFromApp());
@@ -106,7 +110,14 @@ public class ReceiverViewController implements Initializable {
                         byte[] buffer = port.readBytes(eventValue); // Decode the received message
                         String messageReceived = new String(buffer);
 
-                        addText(messageReceived);
+                        messagesReceived += messageReceived;
+                        if (messagesReceived.contains("\n")) {
+                            var messages = messagesReceived.split("\n");
+                            for (String message : messages)
+                                addText(message);
+                            messagesReceived = "";
+                        }
+
                         System.out.println(messageReceived);
                     } catch (SerialPortException ex) {
                         throw new RuntimeException(ex);
