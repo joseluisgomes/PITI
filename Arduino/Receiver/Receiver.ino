@@ -22,6 +22,7 @@ void loop() {
         syncFound = false; // if not, breaks from cycle and repeats process
         break;
       }
+
       delay(1); // wait for 1 ms before checking the next bit
     }
     if (syncFound) { // if True, leaves while(true) cycle 
@@ -30,7 +31,7 @@ void loop() {
     }
   }
 
-  delay(1);  // delay of 10 ms
+  delayMicroseconds(105);  // delay of 1 ms
   for (int i = 0; i < 9; i++) { // iterate over all 9 bits (8 bits of character + 1 bit of parity bit) of the character
 
     if (digitalRead(inputPin) == HIGH) { // check if the input pin is still HIGH
@@ -47,7 +48,7 @@ void loop() {
         parity = 0;
       }  
     }
-    delay(1); // wait for 10 ms before reading the next bit
+    delay(1); // wait for 1 ms before reading the next bit
   }
 
   // Serial.println("");
@@ -62,7 +63,7 @@ void loop() {
     byte characterReceived = receivedChar >> 1;
     Serial.print(receivedChar); // print the received character to the Serial monitor
   }
-  delay(1);
+  delayMicroseconds(105); // Wait 105 microseconds before receiving the next character
 }
 
 
