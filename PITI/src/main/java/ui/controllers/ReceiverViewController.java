@@ -37,6 +37,8 @@ public class ReceiverViewController implements Initializable {
 
     private String messagesReceived = "";
 
+    private final SerialPort serialPort = new SerialPort(App.port);
+
     static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
     @Override
@@ -48,7 +50,6 @@ public class ReceiverViewController implements Initializable {
 
         try {
             // Initialize the SERIAL PORT
-            final var serialPort = new SerialPort(App.port);
             serialPort.openPort();
             serialPort.setParams(Integer.parseInt(App.baudrate), DATABITS_8, STOPBITS_1, PARITY_NONE);
 
@@ -65,6 +66,12 @@ public class ReceiverViewController implements Initializable {
 
     @FXML
     private void handleReturnButtonClicked(ActionEvent event) throws IOException {
+        try {
+            serialPort.closePort();
+        } catch (SerialPortException e) {
+            System.out.println("PORT FAILED TO CLOSE");
+        }
+
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/MainView.fxml")));
         Scene newScene = new Scene(root);
         newScene.setFill(Color.TRANSPARENT);

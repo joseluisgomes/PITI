@@ -17,6 +17,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -28,15 +30,22 @@ public class EmitterViewController implements Initializable {
     private TextArea EmitterTextArea;
 
     @FXML
+    private TextArea EmitterHistoryTextArea;
+
+    @FXML
     private Label emitterTextBR;
 
     @FXML
     private Label emitterTextPort;
 
+    static final DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
     private final SerialPort serialPort = new SerialPort(App.port);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        EmitterHistoryTextArea.setEditable(false);
+
         emitterTextPort.setText("Port: " + MainViewController.getPortFromApp());
         emitterTextBR.setText("Baudrate: " + MainViewController.getBaudrateFromApp());
 
@@ -67,8 +76,7 @@ public class EmitterViewController implements Initializable {
         }
 
         try {
-
-
+            addText(textToBeSent);
             textToBeSent += "\n";
             serialPort.writeBytes(textToBeSent.getBytes());
             //serialPort.closePort(); // Connection closed
@@ -82,6 +90,12 @@ public class EmitterViewController implements Initializable {
 
     @FXML
     private void handleReturnButtonClicked(ActionEvent event) throws IOException {
+        try {
+            serialPort.closePort();
+        } catch (SerialPortException e) {
+            System.out.println("PORT FAILED TO CLOSE");
+        }
+
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/MainView.fxml")));
 
         Scene newScene = new Scene(root);
@@ -108,5 +122,16 @@ public class EmitterViewController implements Initializable {
                 .toString();
 
         return temp;
+    }
+
+    public void addText(String msg) {
+        LocalDateTime ldt = LocalDateTime.now();
+        String time = ldt.format(format);
+
+        if (Objects.equals(EmitterHistoryTextArea.getText(), "")) {
+            EmitterHistoryTextArea.setText(time + " " + msg);
+        } else {
+            EmitterHistoryTextArea.appendText("\n" + time + " " + msg);
+        }
     }
 }

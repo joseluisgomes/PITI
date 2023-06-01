@@ -68,6 +68,13 @@
                             <HBox alignment="TOP_RIGHT">
                                 <Button onAction="#handleSubmitButtonAction" styleClass="submit-button"/>
                             </HBox>
+
+                            <HBox>
+                                <padding>
+                                    <Insets top="80" right="10"/>
+                                </padding>
+                                <TextArea fx:id="EmitterHistoryTextArea" minHeight="100" HBox.hgrow="ALWAYS" />
+                            </HBox>
                         </VBox>
                     </HBox>
                 </StackPane>
