@@ -12,13 +12,12 @@ import javafx.stage.StageStyle;
 import java.util.Objects;
 
 public class App extends Application {
-
     private static Stage stage;
     private double xOffset;
     private double yOffset;
 
-    public static String port = "COM5";
-    public static String baudrate = "9600";
+    public static String port;
+    public static String baudrate;
 
     @Override
     public void start(Stage primaryStage) throws Exception {

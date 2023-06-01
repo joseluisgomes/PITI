@@ -5,7 +5,6 @@ import ui.App;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,14 +17,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DialogPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-@SuppressWarnings("CanBeFinal")
 public class MainViewController implements Initializable {
 
     @FXML
@@ -46,9 +43,6 @@ public class MainViewController implements Initializable {
 
         ports = getAvailableCOMPorts();
 
-        final ObservableList<String> portOptions = FXCollections.observableArrayList(ports);
-        final ObservableList<String> baudrateOptions = FXCollections.observableArrayList("2400", "9600", "28800", "57600", "115200");
-
         if (getBaudrateFromApp() != null) {
             comboBoxBR.valueProperty().setValue(getBaudrateFromApp());
         }
@@ -57,8 +51,8 @@ public class MainViewController implements Initializable {
             comboBoxCOM.valueProperty().setValue(getPortFromApp());
         }
 
-        comboBoxBR.getItems().addAll(baudrateOptions);
-        comboBoxCOM.getItems().addAll(portOptions);
+        comboBoxBR.getItems().addAll(FXCollections.observableArrayList("2400", "9600", "28800", "57600", "115200"));
+        comboBoxCOM.getItems().addAll(FXCollections.observableArrayList(ports));
     }
 
     @FXML
@@ -92,10 +86,6 @@ public class MainViewController implements Initializable {
 
     @FXML
     private void handleEmitterViewAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/EmitterView.fxml")));
-        Scene newScene = new Scene(root);
-        newScene.setFill(Color.TRANSPARENT);
-
         String tempBaudrate = getBaudrateFromCB();
         String tempPort = getCOMPortNameFromCB();
 
@@ -110,6 +100,9 @@ public class MainViewController implements Initializable {
             System.out.println("\nE: COM port = " + App.port);
             System.out.println("E: Baudrate = " + App.baudrate);
 
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/EmitterView.fxml")));
+            Scene newScene = new Scene(root);
+            newScene.setFill(Color.TRANSPARENT);
             Stage newStage = App.getStage();
             newStage.setScene(newScene);
         }
@@ -118,10 +111,6 @@ public class MainViewController implements Initializable {
 
     @FXML
     private void handleReceiverViewAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/ReceiverView.fxml")));
-        Scene newScene = new Scene(root);
-        newScene.setFill(Color.TRANSPARENT);
-
         String tempBaudrate = getBaudrateFromCB();
         String tempPort = getCOMPortNameFromCB();
 
@@ -131,11 +120,15 @@ public class MainViewController implements Initializable {
             alertNullBaudrate();
         } else {
             setPortOnApp(tempPort);
+            App.baudrate = tempBaudrate;
             setBaudrateOnApp(tempBaudrate);
 
             System.out.println("\nR: COM port = " + App.port);
             System.out.println("R: Baudrate = " + App.baudrate);
 
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/ReceiverView.fxml")));
+            Scene newScene = new Scene(root);
+            newScene.setFill(Color.TRANSPARENT);
             Stage newStage = App.getStage();
             newStage.setScene(newScene);
         }

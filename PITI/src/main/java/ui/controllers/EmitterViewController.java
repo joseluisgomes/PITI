@@ -34,8 +34,6 @@ public class EmitterViewController implements Initializable {
                 handleSubmitButtonAction(new ActionEvent());
             }
         });
-
-        //System.out.println("BR: " + App.baudrate);
     }
 
     @FXML
@@ -57,7 +55,7 @@ public class EmitterViewController implements Initializable {
 
             textToBeSent += "\n";
             serialPort.writeBytes(textToBeSent.getBytes());
-            serialPort.closePort(); // Connection closed
+            //serialPort.closePort(); // Connection closed
         } catch (SerialPortException e) {
             throw new RuntimeException(e);
         }
@@ -75,6 +73,7 @@ public class EmitterViewController implements Initializable {
 
         Stage newStage = App.getStage();
         newStage.setScene(newScene);
+
         event.consume();
     }
 

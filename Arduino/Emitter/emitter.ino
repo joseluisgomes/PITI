@@ -25,10 +25,10 @@ void loop() {
     // send the synchronization pattern to indicate the start of a character transmission
     for (int i = 0; i < 8; i++) {
       digitalWrite(outputPin, bitRead(syncPattern, i)); // set the output pin to the i-th bit of the synchronization pattern
-      delay(1); // wait for 1 ms before transmitting the next bit
+      delay(1); // wait for 10 ms before transmitting the next bit
     }
 
-    delayMicroseconds(105);  // wait for 1 ms before transmitting the first bit
+    delay(1); // wait for 10 ms before transmitting the first bit
     char characterToSend = stringToSend.charAt(j); // get the j-th character of the string
     parityBit = parity(characterToSend);
     //byte charWithParity = (characterToSend << 1) | parityBit; // Add the parity bit to the end of the char
@@ -44,13 +44,13 @@ void loop() {
           Serial.print("0");
         }
       }
-      delay(1); // wait for 1 ms before transmitting the next bit
+      delay(1); // wait for 10 ms before transmitting the next bit
     }
-    delayMicroseconds(105); // wait for 105 microseconds before sending the next character
+    delay(1); // wait for 10 milisecond before sending the next character
   }
   Serial.println("");
   //digitalWrite(outputPin, HIGH); // set the output pin to HIGH to signal the end of the character transmission
-  delayMicroseconds(105); // wait for 105 microseconds before sending the next character
+  delay(1); // wait for 1 second before sending the next character
 }
 
 

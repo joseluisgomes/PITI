@@ -15,13 +15,10 @@ import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 import ui.App;
-
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -46,8 +43,6 @@ public class ReceiverViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ReceiverTextArea.setEditable(false);
 
-        //System.out.println("BR: " + App.baudrate);
-
         try {
             // Initialize the SERIAL PORT
             final var serialPort = new SerialPort(App.port);
@@ -57,7 +52,7 @@ public class ReceiverViewController implements Initializable {
             int mask = SerialPort.MASK_RXCHAR + SerialPort.MASK_CTS + SerialPort.MASK_DSR;
             serialPort.setEventsMask(mask);
             serialPort.addEventListener(new MyPortListener(serialPort));
-        //    serialPort.closePort();
+            //serialPort.closePort();
 
             receiverTextBR.setText(MainViewController.getBaudrateFromApp());
             receiverTextPort.setText(MainViewController.getPortFromApp());
@@ -65,9 +60,7 @@ public class ReceiverViewController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        addText("FIRST MESSAGE");
-        //addText("SECOND MESSAGE");
-
+        //addText("FIRST MESSAGE");
     }
 
     @FXML

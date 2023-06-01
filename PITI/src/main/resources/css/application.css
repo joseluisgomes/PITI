@@ -28,7 +28,7 @@
 }
 
 .label {
-    -fx-text-fill: -text-grey;
+    -fx-text-fill: -white;
 }
 
 .transparent-background {
