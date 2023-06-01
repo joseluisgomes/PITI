@@ -43,6 +43,9 @@ public class ReceiverViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ReceiverTextArea.setEditable(false);
 
+        receiverTextPort.setText("Port: " + MainViewController.getPortFromApp());
+        receiverTextBR.setText("Baudrate: " + MainViewController.getBaudrateFromApp());
+
         try {
             // Initialize the SERIAL PORT
             final var serialPort = new SerialPort(App.port);
@@ -53,9 +56,6 @@ public class ReceiverViewController implements Initializable {
             serialPort.setEventsMask(mask);
             serialPort.addEventListener(new MyPortListener(serialPort));
             //serialPort.closePort();
-
-            receiverTextBR.setText(MainViewController.getBaudrateFromApp());
-            receiverTextPort.setText(MainViewController.getPortFromApp());
         } catch (SerialPortException e) {
             throw new RuntimeException(e);
         }

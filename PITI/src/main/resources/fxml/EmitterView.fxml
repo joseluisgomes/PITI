@@ -34,6 +34,18 @@
                                 </padding>
                                 <Line layoutX="50" layoutY="50" endX="150" stroke="#333333" strokeWidth="2.5"/>
                             </HBox>
+                            <HBox>
+                                <padding>
+                                    <Insets top="50" left="10"/>
+                                </padding>
+                                <Label fx:id="emitterTextPort"/>
+                            </HBox>
+                            <HBox>
+                                <padding>
+                                    <Insets top="10" left="10"/>
+                                </padding>
+                                <Label fx:id="emitterTextBR"/>
+                            </HBox>
                         </VBox>
 
                         <!-- Right side box -->

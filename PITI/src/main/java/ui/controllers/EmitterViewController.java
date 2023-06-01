@@ -1,5 +1,6 @@
 package ui.controllers;
 
+import javafx.scene.control.Label;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 import ui.App;
@@ -26,8 +27,17 @@ public class EmitterViewController implements Initializable {
     @FXML
     private TextArea EmitterTextArea;
 
+    @FXML
+    private Label emitterTextBR;
+
+    @FXML
+    private Label emitterTextPort;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        emitterTextPort.setText("Port: " + MainViewController.getPortFromApp());
+        emitterTextBR.setText("Baudrate: " + MainViewController.getBaudrateFromApp());
+
         EmitterTextArea.setOnKeyReleased(event -> {
             if(event.getCode() == KeyCode.ENTER) {
                 EmitterTextArea.setText(EmitterTextArea.getText().replace("\n",""));

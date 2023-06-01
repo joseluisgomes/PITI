@@ -41,13 +41,6 @@
                                 </padding>
                                 <Line layoutX="50" layoutY="50" endX="150" stroke="#333333" strokeWidth="2.5"/>
                             </HBox>
-                            <!-- fourth horizontal box for the version -->
-                            <HBox>
-                                <padding>
-                                    <Insets bottom="10" left="10"/>
-                                </padding>
-                                <Label text="UI VERSION: v1.6" styleClass="version-text"/>
-                            </HBox>
                         </VBox>
 
                         <!-- Right side box -->

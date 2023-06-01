@@ -36,7 +36,7 @@
                             </HBox>
                             <HBox>
                                 <padding>
-                                    <Insets top="10" left="10"/>
+                                    <Insets top="50" left="10"/>
                                 </padding>
                                 <Label fx:id="receiverTextPort"/>
                             </HBox>
