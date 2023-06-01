@@ -33,6 +33,8 @@ public class EmitterViewController implements Initializable {
     @FXML
     private Label emitterTextPort;
 
+    private final SerialPort serialPort = new SerialPort(App.port);
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         emitterTextPort.setText("Port: " + MainViewController.getPortFromApp());
@@ -44,6 +46,13 @@ public class EmitterViewController implements Initializable {
                 handleSubmitButtonAction(new ActionEvent());
             }
         });
+
+        try {
+            serialPort.openPort();
+            serialPort.setParams(Integer.parseInt(App.baudrate), DATABITS_8, STOPBITS_1, PARITY_NONE);
+        } catch (SerialPortException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -58,10 +67,7 @@ public class EmitterViewController implements Initializable {
         }
 
         try {
-            final var serialPort = new SerialPort(App.port);
 
-            serialPort.openPort();
-            serialPort.setParams(Integer.parseInt(App.baudrate), DATABITS_8, STOPBITS_1, PARITY_NONE);
 
             textToBeSent += "\n";
             serialPort.writeBytes(textToBeSent.getBytes());
