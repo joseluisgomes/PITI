@@ -75,6 +75,10 @@
     -fx-background-color: -secondary;
 }
 
+.dialog-pane .label {
+    -fx-text-fill: -grey;
+}
+
 .background-pane .button { /* only buttons inside the .background-pane */
     -fill: -primary;
     -fx-background-color: -fill;
