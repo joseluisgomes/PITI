@@ -24,7 +24,6 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class MainViewController implements Initializable {
-
     @FXML
     ComboBox<String> comboBoxBR = new ComboBox<>();
 
@@ -149,34 +148,13 @@ public class MainViewController implements Initializable {
         alert.show();
     }
 
-// --Commented out (13/04/2023 21:02):
-//    private ArrayList<String> createRandomCOMs() {
-//        ArrayList<String> COMs = new ArrayList<>();
-//
-//        int leftLimit = 1, rightLimit = 5, maxNumPorts = 3;
-//        int numPorts = (int) (Math.random() + maxNumPorts);
-//
-//        Random random = new Random();
-//
-//        for (int i = 0; i < numPorts; i++) {
-//            int intTemp = random.nextInt(rightLimit - leftLimit + 1) + leftLimit;
-//            String temp = "COM" + intTemp;
-//            if (!COMs.contains(temp)) {
-//                COMs.add(temp);
-//            }
-//        }
-//        Collections.sort(COMs);
-//        return COMs;
-//    }
-// --Commented out
-
     private ArrayList<String> getAvailableCOMPorts() {
         String[] ports = SerialPortList.getPortNames();
         ArrayList<String> temp = new ArrayList<>();
         String name;
 
         for (String port : ports) {
-            name = port; // name = port.getPortName() + ": " + port;
+            name = port;
             temp.add(name);
         }
 
@@ -194,5 +172,4 @@ public class MainViewController implements Initializable {
     public static String getPortFromApp() { return App.port; }
 
     public static String getBaudrateFromApp() { return App.baudrate; }
-
 }

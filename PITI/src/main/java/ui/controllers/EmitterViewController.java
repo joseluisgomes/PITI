@@ -4,7 +4,6 @@ import javafx.scene.control.Label;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 import ui.App;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -72,14 +71,12 @@ public class EmitterViewController implements Initializable {
             textToBeSent = EmitterTextArea.getText();
         } else if(EmitterTextArea.getText().isEmpty()  || EmitterTextArea.getText().equals("")) {  // if TextArea doesn't have text
             textToBeSent = createRandomMessage();
-            //EmitterTextArea.setPromptText(textToBeSent);
         }
 
         try {
             addText(textToBeSent);
             textToBeSent += "\n";
             serialPort.writeBytes(textToBeSent.getBytes());
-            //serialPort.closePort(); // Connection closed
         } catch (SerialPortException e) {
             throw new RuntimeException(e);
         }

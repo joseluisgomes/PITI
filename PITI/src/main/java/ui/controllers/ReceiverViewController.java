@@ -56,18 +56,13 @@ public class ReceiverViewController implements Initializable {
             int mask = SerialPort.MASK_RXCHAR + SerialPort.MASK_CTS + SerialPort.MASK_DSR;
             serialPort.setEventsMask(mask);
             serialPort.addEventListener(new MyPortListener(serialPort));
-            //serialPort.closePort();
         } catch (SerialPortException e) {
             throw new RuntimeException(e);
         }
-
-        // addText("FIRST MESSAGE");
     }
 
     @FXML
-    public void handleClearTextArea() {
-        ReceiverTextArea.setText("");
-    }
+    public void handleClearTextArea() { ReceiverTextArea.setText(""); }
 
     @FXML
     private void handleReturnButtonClicked(ActionEvent event) throws IOException {
@@ -101,9 +96,7 @@ public class ReceiverViewController implements Initializable {
     class MyPortListener implements SerialPortEventListener {
         private final SerialPort port;
 
-        public MyPortListener(SerialPort port) {
-            this.port = port;
-        }
+        public MyPortListener(SerialPort port) { this.port = port; }
 
         @Override
         public void serialEvent(SerialPortEvent serialPortEvent) {
