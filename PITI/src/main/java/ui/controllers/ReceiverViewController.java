@@ -65,7 +65,7 @@ public class ReceiverViewController implements Initializable {
     }
 
     @FXML
-    public void handleClearTextArea(ActionEvent event) {
+    public void handleClearTextArea() {
         ReceiverTextArea.setText("");
     }
 
