@@ -65,6 +65,12 @@
                                 </padding>
                                 <TextArea fx:id="ReceiverTextArea" minHeight="250" HBox.hgrow="ALWAYS"/>
                             </HBox>
+                            <HBox alignment="TOP_RIGHT">
+                                <padding>
+                                    <Insets right="10"/>
+                                </padding>
+                                <Button onAction="#handleClearTextArea" styleClass="clear-button"/>
+                            </HBox>
                         </VBox>
                     </HBox>
                 </StackPane>
