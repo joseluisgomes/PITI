@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.Line?>
+
+<BorderPane prefHeight="600" prefWidth="1000" styleClass="shadow-pane" stylesheets="@../css/application.css"
+            xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ui.controllers.MainViewController">
+
+    <center>
+        <!-- Vertical box to group the horizontal boxes -->
+        <VBox id="dragTarget" spacing="10" styleClass="background-pane">
+            <ScrollPane styleClass="transparent-background" fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
+                <StackPane id="contentContainer">
+                    <HBox alignment="CENTER">
+                        <!-- Left side box -->
+                        <VBox id="leftbox" styleClass="left-container-background" minWidth="150">
+                            <!-- first horizontal box for the title and the retract button -->
+                            <HBox>
+                                <!-- first vertical here for the title -->
+                                <padding>
+                                    <Insets top="10" left="10"/>
+                                </padding>
+                                <Label text="PITI APP" styleClass="main-text"/>
+                            </HBox>
+                            <!-- second horizontal box for the line -->
+                            <HBox>
+                                <padding>
+                                    <Insets top="10"/>
+                                </padding>
+                                <Line layoutX="50" layoutY="50" endX="150" stroke="#333333" strokeWidth="2.5"/>
+                            </HBox>
+                            <!-- region to force the rest of the next components to the bottom -->
+                            <Region VBox.vgrow="ALWAYS"/>
+                            <!-- third horizontal box for the line -->
+                            <HBox>
+                                <padding>
+                                    <Insets bottom="10"/>
+                                </padding>
+                                <Line layoutX="50" layoutY="50" endX="150" stroke="#333333" strokeWidth="2.5"/>
+                            </HBox>
+                        </VBox>
+
+                        <!-- Right side box -->
+                        <VBox id="rightbox" styleClass="right-container-background" minWidth="835" alignment="TOP_CENTER">
+                            <padding>
+                                <Insets top="10" bottom="10" left="10" right="10"/>
+                            </padding>
+
+                            <!-- HBox for the buttons -->
+                            <HBox alignment="CENTER_RIGHT" spacing="10" HBox.hgrow="ALWAYS">
+                                <Button onAction="#handleGitButtonClicked" styleClass="git-button"/>
+                                <Button onAction="#handleMinimizeButtonClicked" styleClass="minimize-button"/>
+                                <Button onAction="#handleExitButtonClicked" styleClass="exit-button"/>
+                            </HBox>
+
+                            <VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                                <padding>
+                                    <Insets top="15"/>
+                                </padding>
+                                <!-- HBox for the ComboBoxes -->
+                                <HBox alignment="CENTER_LEFT" spacing="20">
+                                    <Button onAction="#handleRefreshButtonAction" styleClass="refresh-button"/>
+                                    <ComboBox fx:id="comboBoxCOM" promptText="Choose a port:"/>
+                                    <ComboBox fx:id="comboBoxBR" promptText="Choose a baudrate:"/>
+                                </HBox>
+                                <!-- HBox for the buttons -->
+                                <HBox alignment="CENTER" spacing="10" VBox.vgrow="ALWAYS">
+                                    <Button text="Emitter" onAction="#handleEmitterViewAction" styleClass="main-view-button"/>
+                                    <Button text="Receiver" onAction="#handleReceiverViewAction" styleClass="main-view-button"/>
+                                </HBox>
+                            </VBox>
+                        </VBox>
+                    </HBox>
+                </StackPane>
+            </ScrollPane>
+        </VBox>
+    </center>
+</BorderPane>
