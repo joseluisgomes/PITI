@@ -1,5 +1,5 @@
 # PITI
-Protótipo que permita a transmissão de informação entre dois PCs sobre um link ótico.
+Protótipo que permite a transmissão de informação entre dois PCs sobre um link ótico.
 
 ## Autores
 
