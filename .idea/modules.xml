@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/PITI.iml" filepath="$PROJECT_DIR$/.idea/PITI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PITI/PITI.iml" filepath="$PROJECT_DIR$/PITI/PITI.iml" />
     </modules>
   </component>
 </project>

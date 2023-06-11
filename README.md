@@ -32,7 +32,7 @@ A figura abaixo ilustra uma visão geral da arquitetura do sistema completo.
 
 ![diagramaFaseC](https://github.com/joseluisgomes/PITI/assets/70901488/819bbc87-a094-45d3-8747-8cbf816cf3f6)
 
-Através da visualização da figura referida, a comunicação é estabelecida com recurso a um *link* ótico (representado pela seta amarela) que será gerado pelo LED. Posteriormente, o *link* ótico será detetado pelo fotodetetor, que é um componente intrínseco ao recetor e é responsável pela transformação
+Através da visualização da figura referida, a comunicação é estabelecida com recurso a um *link* ótico (representado pela seta amarela) que será gerado pelo **LED**. Posteriormente, o *link* ótico será detetado pelo fotodetetor, que é um componente intrínseco ao recetor e é responsável pela transformação
 da informação presente no *link* ótico num sinal elétrico. 
 
 De seguida, do lado do recetor, o PC irá executar uma aplicação que receberá e apresentará a informação correspondente.
