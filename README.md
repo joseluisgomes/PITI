@@ -44,7 +44,7 @@ A figura abaixo ilustra o circuito **emissor** implementado pelo grupo.
 Para implementar o circuito emissor foi necessário relembrar certos conceitos do domínio da eletrónica, em especial, o modo de funcionamento do transístor bipolar. O circuito emissor, através de um emissor de infravermelhos (LED), transmite o sinal elétrico, oriundo da porta série da estação emissora.
 
 <p align="center">
-  <img width="700" height="250" src="https://github.com/joseluisgomes/PITI/assets/70901488/c4b00be9-2f39-4510-aee3-08edddae7b44">
+  <img width="450" height="350" src="https://github.com/joseluisgomes/PITI/assets/70901488/c4b00be9-2f39-4510-aee3-08edddae7b44">
 </p>
 
 ## Circuito Recetor
@@ -54,7 +54,7 @@ A figura 3.8 ilustra o circuito recetor implementado pelo grupo. Para implementa
 O circuito recetor recupera o sinal elétrico através do sinal ótico e envia o mesmo pela porta série da estação recetora. Este circuito pode ser dividido em 4 partes: filtro passa-alto; amplificador de transimpedância; comparador de tensão e retificador de meia onda.
 
 <p align="center">
-  <img width="700" height="250" src="https://github.com/joseluisgomes/PITI/assets/70901488/7ef894f0-16d7-43e4-ab22-50f888cecf77">
+  <img width="700" height="350" src="https://github.com/joseluisgomes/PITI/assets/70901488/7ef894f0-16d7-43e4-ab22-50f888cecf77">
 </p>
 
 ## Interface gráfica da aplicação
@@ -68,4 +68,6 @@ No menu principal, o utilizador tem de selecionar a porta COM por onde pretende 
 
 A figura abaixo apresenta o menu principal em diferentes fases de execução.
 
-![main_menu_empty](https://github.com/joseluisgomes/PITI/assets/70901488/f36b89f0-416e-4a3e-9ce0-3c81e29dd9b3)
+<p align="center">
+  <img width="700" height="450" src="https://github.com/joseluisgomes/PITI/assets/70901488/f36b89f0-416e-4a3e-9ce0-3c81e29dd9b3">
+</p>
