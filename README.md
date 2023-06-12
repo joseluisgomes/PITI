@@ -37,21 +37,25 @@ da informação presente no *link* ótico num sinal elétrico.
 
 De seguida, do lado do recetor, o PC irá executar uma aplicação que receberá e apresentará a informação correspondente.
 
-## Circuito **Emissor**
+## Circuito Emissor
 
 A figura abaixo ilustra o circuito **emissor** implementado pelo grupo. 
 
 Para implementar o circuito emissor foi necessário relembrar certos conceitos do domínio da eletrónica, em especial, o modo de funcionamento do transístor bipolar. O circuito emissor, através de um emissor de infravermelhos (LED), transmite o sinal elétrico, oriundo da porta série da estação emissora.
 
-![Circuito emissor](https://github.com/joseluisgomes/PITI/assets/70901488/c4b00be9-2f39-4510-aee3-08edddae7b44)
+<p align="center">
+  <img width="700" height="250" src="https://github.com/joseluisgomes/PITI/assets/70901488/c4b00be9-2f39-4510-aee3-08edddae7b44">
+</p>
 
-## Circuito **Recetor**
+## Circuito Recetor
 
 A figura 3.8 ilustra o circuito recetor implementado pelo grupo. Para implementar o circuito recetor também foi necessário relembrar certos conceitos do domínio da eletrónica, em especial, o modo de funcionamento dos AMPOPs.
 
 O circuito recetor recupera o sinal elétrico através do sinal ótico e envia o mesmo pela porta série da estação recetora. Este circuito pode ser dividido em 4 partes: filtro passa-alto; amplificador de transimpedância; comparador de tensão e retificador de meia onda.
 
-![Circuito recetor](https://github.com/joseluisgomes/PITI/assets/70901488/7ef894f0-16d7-43e4-ab22-50f888cecf77)
+<p align="center">
+  <img width="700" height="250" src="https://github.com/joseluisgomes/PITI/assets/70901488/7ef894f0-16d7-43e4-ab22-50f888cecf77">
+</p>
 
 ## Interface gráfica da aplicação
 
