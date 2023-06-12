@@ -93,6 +93,12 @@ public class ReceiverViewController implements Initializable {
         }
     }
 
+    /**
+     * In this class must implement the method serialEvent, through it we learn about
+     * events that happened to our port. But we will not report on all events but only
+     * those that we put in the mask. In this case the arrival of the data and change the
+     * status lines CTS and DSR
+     */
     class MyPortListener implements SerialPortEventListener {
         private final SerialPort port;
 
