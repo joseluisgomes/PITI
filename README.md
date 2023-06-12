@@ -49,7 +49,7 @@ Para implementar o circuito emissor foi necessário relembrar certos conceitos d
 
 ## Circuito Recetor
 
-A figura 3.8 ilustra o circuito recetor implementado pelo grupo. Para implementar o circuito recetor também foi necessário relembrar certos conceitos do domínio da eletrónica, em especial, o modo de funcionamento dos AMPOPs.
+A figura abaixo ilustra o circuito recetor implementado pelo grupo. Para implementar o circuito recetor também foi necessário relembrar certos conceitos do domínio da eletrónica, em especial, o modo de funcionamento dos AMPOPs.
 
 O circuito recetor recupera o sinal elétrico através do sinal ótico e envia o mesmo pela porta série da estação recetora. Este circuito pode ser dividido em 4 partes: filtro passa-alto; amplificador de transimpedância; comparador de tensão e retificador de meia onda.
 
