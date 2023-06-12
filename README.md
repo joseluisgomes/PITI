@@ -39,7 +39,7 @@ De seguida, do lado do recetor, o PC irá executar uma aplicação que receberá
 
 ## Circuito Emissor
 
-A figura abaixo ilustra o circuito **emissor** implementado pelo grupo. 
+A figura abaixo ilustra o circuito emissor implementado pelo grupo. 
 
 Para implementar o circuito emissor foi necessário relembrar certos conceitos do domínio da eletrónica, em especial, o modo de funcionamento do transístor bipolar. O circuito emissor, através de um emissor de infravermelhos (LED), transmite o sinal elétrico, oriundo da porta série da estação emissora.
 
