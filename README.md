@@ -30,7 +30,7 @@ Protótipo que permite a transmissão de informação entre dois PCs sobre um *l
 
 A figura abaixo ilustra uma visão geral da arquitetura do sistema completo. 
 
-![diagramaFaseC](https://github.com/joseluisgomes/PITI/assets/70901488/819bbc87-a094-45d3-8747-8cbf816cf3f6)
+![diagramaFaseC](https://github.com/joseluisgomes/PITI/assets/70901488/99b3674d-e267-4b88-a75d-e81da7e199e5)
 
 Através da visualização da figura referida, a comunicação é estabelecida com recurso a um *link* ótico (representado pela seta amarela) que será gerado pelo **LED**. Posteriormente, o *link* ótico será detetado pelo fotodetetor, que é um componente intrínseco ao recetor e é responsável pela transformação
 da informação presente no *link* ótico num sinal elétrico. 
@@ -44,7 +44,7 @@ A figura abaixo ilustra o circuito emissor implementado pelo grupo.
 Para implementar o circuito emissor foi necessário relembrar certos conceitos do domínio da eletrónica, em especial, o modo de funcionamento do transístor bipolar. O circuito emissor, através de um emissor de infravermelhos (LED), transmite o sinal elétrico, oriundo da porta série da estação emissora.
 
 <p align="center">
-  <img width="450" height="350" src="https://github.com/joseluisgomes/PITI/assets/70901488/c4b00be9-2f39-4510-aee3-08edddae7b44">
+  <img width="450" height="350" src="https://github.com/joseluisgomes/PITI/assets/70901488/f66094a6-a638-452f-9363-205726b05bae">
 </p>
 
 ## Circuito Recetor
@@ -54,7 +54,7 @@ A figura abaixo ilustra o circuito recetor implementado pelo grupo. Para impleme
 O circuito recetor recupera o sinal elétrico através do sinal ótico e envia o mesmo pela porta série da estação recetora. Este circuito pode ser dividido em 4 partes: filtro passa-alto; amplificador de transimpedância; comparador de tensão e retificador de meia onda.
 
 <p align="center">
-  <img width="700" height="350" src="https://github.com/joseluisgomes/PITI/assets/70901488/7ef894f0-16d7-43e4-ab22-50f888cecf77">
+  <img width="700" height="350" src="https://github.com/joseluisgomes/PITI/assets/70901488/d44eee72-4f09-40d2-ac94-451a95d1e2ae">
 </p>
 
 ## Interface gráfica da aplicação
@@ -69,5 +69,5 @@ No menu principal, o utilizador tem de selecionar a porta COM por onde pretende 
 A figura abaixo apresenta o menu principal em diferentes fases de execução.
 
 <p align="center">
-  <img width="700" height="450" src="https://github.com/joseluisgomes/PITI/assets/70901488/f36b89f0-416e-4a3e-9ce0-3c81e29dd9b3">
+  <img width="700" height="450" src="https://github.com/joseluisgomes/PITI/assets/70901488/da278a3e-5408-4210-ad3c-60959d39576f">
 </p>
